@@ -8,7 +8,8 @@ repository = "https://github.com/grovesNL/glyphon"
 license = "MIT OR Apache-2.0 OR Zlib"
 
 [dependencies]
-wgpu = "0.19"
+# Newer wgpu commit that fixes Vulkan backend on Nvidia
+wgpu = { git = "https://github.com/gfx-rs/wgpu", rev = "20fda69" }
 etagere = "0.2.10"
 cosmic-text = { git = "https://github.com/pop-os/cosmic-text.git", rev = "1b025ae" }
 lru = "0.12.1"
