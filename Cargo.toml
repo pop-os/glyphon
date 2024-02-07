@@ -11,7 +11,7 @@ license = "MIT OR Apache-2.0 OR Zlib"
 # Newer wgpu commit that fixes Vulkan backend on Nvidia
 wgpu = { git = "https://github.com/gfx-rs/wgpu", rev = "20fda69" }
 etagere = "0.2.10"
-cosmic-text = { git = "https://github.com/pop-os/cosmic-text.git", rev = "1b025ae" }
+cosmic-text = { git = "https://github.com/pop-os/cosmic-text.git" }
 lru = "0.12.1"
 
 [dev-dependencies]
