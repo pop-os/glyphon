@@ -25,11 +25,13 @@ async fn run() {
     // Set up window
     let (width, height) = (800, 600);
     let event_loop = EventLoop::new().unwrap();
-    let window = Arc::new(WindowBuilder::new()
-        .with_inner_size(LogicalSize::new(width as f64, height as f64))
-        .with_title("glyphon hello world")
-        .build(&event_loop)
-        .unwrap());
+    let window = Arc::new(
+        WindowBuilder::new()
+            .with_inner_size(LogicalSize::new(width as f64, height as f64))
+            .with_title("glyphon hello world")
+            .build(&event_loop)
+            .unwrap(),
+    );
     let size = window.inner_size();
     let scale_factor = window.scale_factor();
 
@@ -51,7 +53,9 @@ async fn run() {
         .await
         .unwrap();
 
-    let surface = instance.create_surface(window.clone()).expect("Create surface");
+    let surface = instance
+        .create_surface(window.clone())
+        .expect("Create surface");
     let swapchain_format = TextureFormat::Bgra8UnormSrgb;
     let mut config = SurfaceConfiguration {
         usage: TextureUsages::RENDER_ATTACHMENT,
@@ -80,7 +84,7 @@ async fn run() {
 
     buffer.set_size(&mut font_system, physical_width, physical_height);
     buffer.set_text(&mut font_system, "Hello world! 👋\nThis is rendered with 🦅 glyphon 🦁\nThe text below should be partially clipped.\na b c d e f g h i j k l m n o p q r s t u v w x y z", Attrs::new().family(Family::SansSerif), Shaping::Advanced);
-    buffer.shape_until_scroll(&mut font_system, false);
+    buffer.shape_until_scroll(&mut font_system);
 
     event_loop
         .run(move |event, target| {
