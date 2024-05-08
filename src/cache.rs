@@ -4,10 +4,10 @@ use wgpu::{
     BindGroup, BindGroupDescriptor, BindGroupEntry, BindGroupLayout, BindGroupLayoutEntry,
     BindingResource, BindingType, BlendState, Buffer, BufferBindingType, ColorTargetState,
     ColorWrites, DepthStencilState, Device, FilterMode, FragmentState, MultisampleState,
-    PipelineCompilationOptions, PipelineLayout, PipelineLayoutDescriptor, PrimitiveState,
-    PrimitiveTopology, RenderPipeline, RenderPipelineDescriptor, Sampler, SamplerBindingType,
-    SamplerDescriptor, ShaderModule, ShaderModuleDescriptor, ShaderSource, ShaderStages,
-    TextureFormat, TextureSampleType, TextureView, TextureViewDimension, VertexFormat, VertexState,
+    PipelineLayout, PipelineLayoutDescriptor, PrimitiveState, PrimitiveTopology, RenderPipeline,
+    RenderPipelineDescriptor, Sampler, SamplerBindingType, SamplerDescriptor, ShaderModule,
+    ShaderModuleDescriptor, ShaderSource, ShaderStages, TextureFormat, TextureSampleType,
+    TextureView, TextureViewDimension, VertexFormat, VertexState,
 };
 
 use std::borrow::Cow;
@@ -220,7 +220,6 @@ impl Cache {
                         module: shader,
                         entry_point: "vs_main",
                         buffers: vertex_buffers,
-                        compilation_options: PipelineCompilationOptions::default(),
                     },
                     fragment: Some(FragmentState {
                         module: shader,
@@ -230,7 +229,6 @@ impl Cache {
                             blend: Some(BlendState::ALPHA_BLENDING),
                             write_mask: ColorWrites::default(),
                         })],
-                        compilation_options: PipelineCompilationOptions::default(),
                     }),
                     primitive: PrimitiveState {
                         topology: PrimitiveTopology::TriangleStrip,
