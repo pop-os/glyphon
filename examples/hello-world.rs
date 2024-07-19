@@ -4,7 +4,7 @@ use glyphon::{
 };
 use wgpu::{
     CommandEncoderDescriptor, CompositeAlphaMode, DeviceDescriptor, Features, Instance,
-    InstanceDescriptor, Limits, LoadOp, MultisampleState, Operations, PresentMode,
+    InstanceDescriptor, Limits, LoadOp, MemoryHints, MultisampleState, Operations, PresentMode,
     RenderPassColorAttachment, RenderPassDescriptor, RequestAdapterOptions, SurfaceConfiguration,
     TextureFormat, TextureUsages, TextureViewDescriptor,
 };
@@ -47,6 +47,7 @@ async fn run() {
                 label: None,
                 required_features: Features::empty(),
                 required_limits: Limits::downlevel_defaults(),
+                memory_hints: MemoryHints::MemoryUsage,
             },
             None,
         )
