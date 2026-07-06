@@ -8,9 +8,9 @@ repository = "https://github.com/iced-rs/cryoglyph"
 license = "MIT OR Apache-2.0 OR Zlib"
 
 [dependencies]
-wgpu = { version = "27", default-features = false, features = ["wgsl"] }
+wgpu = { version = "28", default-features = false, features = ["wgsl"] }
 etagere = "0.2"
-cosmic-text = { git = "https://github.com/pop-os/cosmic-text.git" }
+cosmic-text = { git = "https://github.com/pop-os/cosmic-text.git", rev = "4fe1195e6451d6aaa3dc383895d6fd366ea9fc7b" }
 lru = { version = "0.16", default-features = false }
 rustc-hash = "2"
 

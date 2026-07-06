@@ -39,7 +39,7 @@ impl TextRenderer {
         let pipeline = atlas.get_or_create_pipeline(device, multisample, depth_stencil);
 
         Self {
-            staging_belt: StagingBelt::new(vertex_buffer_size),
+            staging_belt: StagingBelt::new(device.clone(), vertex_buffer_size),
             vertex_buffer,
             vertex_buffer_size,
             pipeline,
@@ -81,8 +81,7 @@ impl TextRenderer {
             };
 
             let layout_runs = text_area
-                .buffer
-                .layout_runs()
+                .text
                 .skip_while(|run| !is_run_visible(run))
                 .take_while(is_run_visible);
 
@@ -295,7 +294,6 @@ impl TextRenderer {
                     &self.vertex_buffer,
                     0,
                     NonZeroU64::new(vertices_raw.len() as u64).expect("Non-empty vertices"),
-                    device,
                 )
                 .copy_from_slice(vertices_raw);
         } else {
@@ -312,7 +310,7 @@ impl TextRenderer {
             self.vertex_buffer_size = buffer_size;
 
             self.staging_belt.finish();
-            self.staging_belt = StagingBelt::new(buffer_size);
+            self.staging_belt = StagingBelt::new(device.clone(), buffer_size);
         }
 
         self.staging_belt.finish();
